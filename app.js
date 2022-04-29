@@ -10,6 +10,8 @@ let hashmap = {
     9: 'bottomRight',
 }
 
+
+
 let ticTacToe = {
     upperLeft : '1',
     upperMid : '2',
@@ -20,6 +22,11 @@ let ticTacToe = {
     bottomLeft : '7',
     bottomMid : '8',
     bottomRight : '9',
+    trigger: 0,
+
+    instructions(){
+        console.log(`use the method "ticTacToe.putPiece(string, number)" where string is either 'o' or 'x' and number is the position you want to put your piece on the board`)
+    },
 
     printBoard(){
         console.log(`${this.upperLeft}${this.upperMid}${this.upperRight}\n${this.middleLeft}${this.middleMid}${this.middleRight}\n${this.bottomLeft}${this.bottomMid}${this.bottomRight}`)
@@ -30,6 +37,12 @@ let ticTacToe = {
         this[hashmap[position]] = symbol.toUpperCase()
         this.printBoard()
         this.checkWin()
+        this.trigger += 1
+        if(this.trigger == 9){
+            this.resetBoard()
+            console.log('its a tie!')
+            this.printBoard()
+        }
     },
 
     resetBoard(){
@@ -40,6 +53,7 @@ let ticTacToe = {
                 i++
             }
         }
+        this.trigger = 0
     },
 
     checkWin(){
@@ -75,9 +89,14 @@ let ticTacToe = {
             console.log(`${this.upperLeft} won!`)
             this.resetBoard()
             this.printBoard()
-        } 
+        }
+        
     }
+
+
+    
 }
 
+ticTacToe.instructions()
 ticTacToe.resetBoard()
 ticTacToe.printBoard()
